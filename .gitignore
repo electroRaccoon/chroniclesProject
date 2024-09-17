@@ -4,3 +4,11 @@ venv/
 # Ignore compiled Python files
 __pycache__/
 *.py[cod]
+
+# Ignore Django migrations
+db.sqlite3
+*.pyc
+*.pyo
+
+# Ignore VSCode settings (optional)
+.vscode/
