@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My Chronicles App{% endblock %}</title>
+    {% load static %}
+    <!-- Add this line to load static files -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'base/styles.css' %}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to the Chronicles App</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="{% url 'login' %}">Login</a>
+        <!-- Login link -->
+        <a href="{% url 'signup' %}">Signup</a>
+        <!-- Signup link (we'll create it below) -->
+      </nav>
+    </header>
+    <main>
+      {% block content %}
+      <!-- Page-specific content will go here -->
+      {% endblock %}
+    </main>
+    <footer>
+      <p>&copy; 2024 Chronicles of Darkness</p>
+    </footer>
+  </body>
+</html>
