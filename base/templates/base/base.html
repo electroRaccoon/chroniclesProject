@@ -1,35 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}My Chronicles App{% endblock %}</title>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Application Chronicles{% endblock %}</title>
     {% load static %}
-    <!-- Add this line to load static files -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'base/styles.css' %}"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" type="text/css" href="{% static 'base/styles.css' %}">
+</head>
+<body>
     <header>
-      <h1>Welcome to the Chronicles App</h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="{% url 'login' %}">Login</a>
-        <!-- Login link -->
-        <a href="{% url 'signup' %}">Signup</a>
-        <!-- Signup link (we'll create it below) -->
-      </nav>
+        <h1>Bienvenue sur l'Application Chronicles</h1>
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="{% url 'login' %}">Connexion</a>
+            <a href="{% url 'signup' %}">Inscription</a>
+        </nav>
     </header>
     <main>
-      {% block content %}
-      <!-- Page-specific content will go here -->
-      {% endblock %}
+        {% block content %}
+        {% endblock %}
     </main>
     <footer>
-      <p>&copy; 2024 Chronicles of Darkness</p>
+        <p>&copy; 2024 Chronicles des Ténèbres</p>
     </footer>
-  </body>
+</body>
 </html>
