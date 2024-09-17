@@ -8,20 +8,36 @@
     <link rel="stylesheet" type="text/css" href="{% static 'base/styles.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Bienvenue sur l'Application Chronicles</h1>
-        <nav>
-            <a href="/">Accueil</a>
-            <a href="{% url 'login' %}">Connexion</a>
-            <a href="{% url 'signup' %}">Inscription</a>
-        </nav>
-    </header>
+
+    <!-- Barre de navigation en haut de la page -->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li><a href="/">Accueil</a></li>
+        </ul>
+        <ul class="nav-right">
+            {% if user.is_authenticated %}
+                <!-- Affichage si l'utilisateur est connecté -->
+                <li>Bonjour, {{ user.username }}</li>
+                <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+            {% else %}
+                <!-- Affichage si l'utilisateur n'est pas connecté -->
+                <li><a href="{% url 'login' %}">Connexion</a></li>
+                <li><a href="{% url 'signup' %}">Inscription</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Section pour le contenu spécifique des pages -->
     <main>
         {% block content %}
+        <!-- Le contenu des autres pages sera inséré ici -->
         {% endblock %}
     </main>
+
+    <!-- Pied de page -->
     <footer>
         <p>&copy; 2024 Chronicles des Ténèbres</p>
     </footer>
+
 </body>
 </html>

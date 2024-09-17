@@ -1,17 +1,20 @@
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render,redirect
+from django.contrib.auth import login
 
-# Create your views here.
-
+# Vue pour la page d'accueil
 def welcome_view(request):
-    return render(request, 'base/base.html')
+    return render(request, 'base/home.html')
 
+# Vue d'inscription
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')  # Redirect to login after successful signup
+            user = form.save()  # Création de l'utilisateur
+            login(request, user)  # Connexion automatique après inscription
+            return redirect('welcome')  # Redirection vers la page d'accueil
     else:
-        form = UserCreationForm()
+        form = UserCreationForm()  # Afficher un formulaire vide
+    
     return render(request, 'base/signup.html', {'form': form})

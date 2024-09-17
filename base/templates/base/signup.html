@@ -4,11 +4,32 @@
 
 {% block content %}
     <h2>Inscription</h2>
+    
+    <!-- Affichage des erreurs de validation -->
+    {% if form.errors %}
+        <div class="errors">
+            <p>Veuillez corriger les erreurs suivantes :</p>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ field.label }} : {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+    
+    <!-- Formulaire d'inscription -->
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">S'inscrire</button>
     </form>
 
-    <p>Vous avez déjà un compte? <a href="{% url 'login' %}">Connectez-vous ici</a>.</p>
+    <p>Vous avez déjà un compte ? <a href="{% url 'login' %}">Connectez-vous ici</a>.</p>
 {% endblock %}

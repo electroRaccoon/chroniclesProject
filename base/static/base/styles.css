@@ -1,27 +1,66 @@
+/* Styles généraux */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-header {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 0;
-  text-align: center;
+/* Barre de navigation en haut */
+nav {
+    display: flex;
+    justify-content: space-between;  /* Sépare les éléments à gauche et à droite */
+    align-items: center;
+    padding: 10px;
+    background-color: #4CAF50;
+    position: sticky;  /* Garde la navigation toujours en haut */
+    top: 0;
+    z-index: 1000;
 }
 
-nav a {
-  margin: 0 15px;
-  color: white;
-  text-decoration: none;
+ul {
+    list-style-type: none;  /* Supprime les puces des listes */
+    margin: 0;
+    padding: 0;
+    display: flex;  /* Affiche les éléments horizontalement */
 }
 
+li {
+    margin-right: 20px;  /* Espacement entre les éléments */
+}
+
+li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Aligne les éléments à gauche */
+.nav-left {
+    display: flex;
+}
+
+/* Aligne les éléments à droite */
+.nav-right {
+    display: flex;
+    margin-left: auto;  /* Pousse ces éléments à droite */
+}
+
+.nav-right li {
+    margin-left: 20px;  /* Ajoute de l'espace entre les éléments à droite */
+}
+
+/* Message de bienvenue dans le body */
 main {
-  margin: 20px;
+    margin: 40px 20px;
+    text-align: center;  /* Centre le message de bienvenue */
 }
 
 footer {
-  text-align: center;
-  margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #555;
 }
