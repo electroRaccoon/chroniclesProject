@@ -128,3 +128,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'welcome'
 
 LOGOUT_REDIRECT_URL = 'welcome'
+
+# Sessions se terminent après 1 heure d'inactivité
+SESSION_COOKIE_AGE = 3600  # 1 heure
+
+# Les sessions se terminent à la fermeture du navigateur
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Sécuriser les cookies de session
+SESSION_COOKIE_SECURE = False  # Assure-toi d'avoir HTTPS
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+
+# Prolonger la session à chaque requête
+SESSION_SAVE_EVERY_REQUEST = True

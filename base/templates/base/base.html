@@ -18,7 +18,14 @@
             {% if user.is_authenticated %}
                 <!-- Affichage si l'utilisateur est connecté -->
                 <li>Bonjour, {{ user.username }}</li>
-                <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                
+                <!-- Formulaire POST pour la déconnexion -->
+                <li>
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none; border:none; color:white; cursor:pointer;">Se déconnecter</button>
+                    </form>
+                </li>
             {% else %}
                 <!-- Affichage si l'utilisateur n'est pas connecté -->
                 <li><a href="{% url 'login' %}">Connexion</a></li>
