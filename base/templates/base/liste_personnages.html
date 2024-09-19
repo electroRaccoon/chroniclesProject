@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Mes Personnages{% endblock %}
+
+{% block content %}
+<div class="liste-personnages">
+    <h1>Mes Personnages</h1>
+    {% if personnages %}
+        <ul>
+        {% for personnage in personnages %}
+            <li>
+                <a href="{% url 'detail_personnage' pk=personnage.pk %}">
+                    {{ personnage.nom }} ({{ personnage.get_type }})
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Vous n'avez pas encore créé de personnage.</p>
+    {% endif %}
+    <a href="{% url 'creer_personnage' %}" class="button">Créer un nouveau personnage</a>
+</div>
+{% endblock %}

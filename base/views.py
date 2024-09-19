@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views import View
 from .forms import ChoixPersonnageForm, PersonnageHumainForm, PersonnageChangelinForm
 from .models import PersonnageHumain, PersonnageChangelin
@@ -23,6 +25,7 @@ def signup_view(request):
     
     return render(request, 'base/signup.html', {'form': form})
 
+@method_decorator(login_required, name='dispatch')
 class CreerPersonnageView(View):
     def get(self, request):
         form = ChoixPersonnageForm()
@@ -49,18 +52,45 @@ class CreerPersonnageView(View):
                 form = PersonnageChangelinForm(request.POST)
             
             if form.is_valid():
-                personnage = form.save()
+                personnage = form.save(commit=False)
+                personnage.user = request.user
+
+                # Vérifier uniquement les champs spécifiques à chaque type de personnage
+                required_fields = ['nom', 'chronique']
+                if type_personnage == 'humain':
+                    required_fields.extend(['vice', 'vertu'])
+                else:
+                    required_fields.extend(['aiguille', 'fil'])
+                
+                errors = {}
+                for field in required_fields:
+                    if not getattr(personnage, field):
+                        errors[field] = 'Ce champ est obligatoire.'
+                
+                if errors:
+                    for field, error in errors.items():
+                        form.add_error(field, error)
+                    return render(request, 'base/creer_personnage.html', {'form': form, 'type': type_personnage})
+                
+                personnage.save()
                 return redirect('detail_personnage', pk=personnage.pk)
             
             return render(request, 'base/creer_personnage.html', {'form': form, 'type': type_personnage})
-        
+@login_required
 def detail_personnage(request, pk):
     try:
-        personnage = PersonnageHumain.objects.get(pk=pk)
+        personnage = PersonnageHumain.objects.get(pk=pk, user=request.user)
     except PersonnageHumain.DoesNotExist:
         try:
-            personnage = PersonnageChangelin.objects.get(pk=pk)
+            personnage = PersonnageChangelin.objects.get(pk=pk, user=request.user)
         except PersonnageChangelin.DoesNotExist:
             raise Http404("Personnage non trouvé")
     
     return render(request, 'base/detail_personnage.html', {'personnage': personnage})
+
+@login_required
+def liste_personnages(request):
+    personnages_humains = PersonnageHumain.objects.filter(user=request.user)
+    personnages_changelins = PersonnageChangelin.objects.filter(user=request.user)
+    personnages = list(personnages_humains) + list(personnages_changelins)
+    return render(request, 'base/liste_personnages.html', {'personnages': personnages})

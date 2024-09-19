@@ -1,42 +1,39 @@
 {% extends 'base/base.html' %}
 {% block title %}Détails du personnage{% endblock %}
 {% block content %}
-<h1>Détails du personnage</h1>
+<div class="personnage-details">
+    <h1>Détails du personnage</h1>
+    <h2>{{ personnage.nom }}</h2>
+    <p><strong>Chronique:</strong> {{ personnage.chronique }}</p>
 
-<h2>{{ personnage.nom }}</h2>
-<p>Chronique: {{ personnage.chronique }}</p>
+    <h3>Attributs</h3>
+    <ul>
+        <li><strong>Intelligence:</strong> {{ personnage.intelligence }}</li>
+        <li><strong>Force:</strong> {{ personnage.force }}</li>
+        <li><strong>Présence:</strong> {{ personnage.presence }}</li>
+    </ul>
 
-<h3>Attributs</h3>
-<ul>
-    <li>Intelligence: {{ personnage.intelligence }}</li>
-    <li>Astuce: {{ personnage.astuce }}</li>
-    <li>Résolution: {{ personnage.resolution }}</li>
-    <li>Force: {{ personnage.force }}</li>
-    <li>Dextérité: {{ personnage.dexterite }}</li>
-    <li>Vigueur: {{ personnage.vigueur }}</li>
-    <li>Présence: {{ personnage.presence }}</li>
-    <li>Manipulation: {{ personnage.manipulation }}</li>
-    <li>Calme: {{ personnage.calme }}</li>
-</ul>
+    <h3>Compétences</h3>
+    <ul>
+        <li><strong>Informatique:</strong> {{ personnage.informatique }}</li>
+        <li><strong>Combat:</strong> {{ personnage.combat }}</li>
+        <li><strong>Empathie:</strong> {{ personnage.empathie }}</li>
+    </ul>
 
-<h3>Compétences</h3>
-<ul>
-    <li>Informatique: {{ personnage.informatique }}</li>
-    <li>Artisanat: {{ personnage.artisanat }}</li>
-    <li>Combat: {{ personnage.combat }}</li>
-    <!-- Ajoutez les autres compétences ici -->
-</ul>
-
-{% if personnage.vice %}
+    {% if personnage.vice %}
     <h3>Caractéristiques Humaines</h3>
-    <p>Vice: {{ personnage.vice }}</p>
-    <p>Vertu: {{ personnage.vertu }}</p>
-{% elif personnage.aiguille %}
+    <ul>
+        <li><strong>Vice:</strong> {{ personnage.vice }}</li>
+        <li><strong>Vertu:</strong> {{ personnage.vertu }}</li>
+    </ul>
+    {% elif personnage.aiguille %}
     <h3>Caractéristiques Changelin</h3>
-    <p>Aiguille: {{ personnage.aiguille }}</p>
-    <p>Fil: {{ personnage.fil }}</p>
-{% endif %}
+    <ul>
+        <li><strong>Aiguille:</strong> {{ personnage.aiguille }}</li>
+        <li><strong>Fil:</strong> {{ personnage.fil }}</li>
+    </ul>
+    {% endif %}
 
-<a href="{% url 'creer_personnage' %}">Créer un autre personnage</a>
-
+    <a href="{% url 'creer_personnage' %}" class="button">Créer un autre personnage</a>
+</div>
 {% endblock %}

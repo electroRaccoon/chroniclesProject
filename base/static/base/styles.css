@@ -64,3 +64,133 @@ footer {
     background-color: #f1f1f1;
     color: #555;
 }
+
+/* Centre le contenu principal */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px); /* Ajustez selon la hauteur de votre header/footer */
+}
+
+/* Style pour les formulaires */
+form {
+    width: 100%;
+    max-width: 500px; /* Ajustez selon vos besoins */
+    margin: 0 auto;
+}
+
+/* Centre les éléments du formulaire */
+form p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Style pour les labels */
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style pour les inputs */
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Style pour les boutons */
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Style pour les messages d'erreur */
+.errorlist {
+    color: red;
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 0;
+}
+
+/* Style pour la page de détails du personnage */
+.personnage-details {
+    text-align: center;
+}
+
+.personnage-details h1,
+.personnage-details h2 {
+    color: #4CAF50;
+}
+
+.personnage-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.personnage-details li {
+    margin-bottom: 10px;
+}
+
+.liste-personnages {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.liste-personnages h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+.liste-personnages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.liste-personnages li {
+    margin-bottom: 10px;
+}
+
+.liste-personnages a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.liste-personnages a:hover {
+    color: #4CAF50;
+}
+
+.button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}

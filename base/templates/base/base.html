@@ -1,53 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mon Application Chronicles{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'base/styles.css' %}">
+    <title>{% block title %}Chronicles des Ténèbres{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base/styles.css' %}">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul class="nav-left">
+                <li><a href="{% url 'welcome' %}">Accueil</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'creer_personnage' %}">Créer un personnage</a></li>
+                    <li><a href="{% url 'liste_personnages' %}">Mes personnages</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav-right">
+                {% if user.is_authenticated %}
+                    <li>Bonjour, {{ user.username }}</li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Se déconnecter</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Connexion</a></li>
+                    <li><a href="{% url 'signup' %}">Inscription</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Barre de navigation en haut de la page -->
-    <nav class="navbar">
-        <ul class="nav-left">
-            <li><a href="/">Accueil</a></li>
-        </ul>
-        <ul class="nav-right">
-            {% if user.is_authenticated %}
-                <!-- Affichage si l'utilisateur est connecté -->
-                <li>Bonjour, {{ user.username }}</li>
-                
-                <!-- Les liens principaux -->
-                <li><a href="{% url 'creer_personnage' %}">Créer un personnage</a></li>
-                
-                <!-- Formulaire POST pour la déconnexion -->
-                <li>
-                    <form method="POST" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit" style="background:none; border:none; color:white; cursor:pointer;">Se déconnecter</button>
-                    </form>
-                </li>
-            {% else %}
-                <!-- Affichage si l'utilisateur n'est pas connecté -->
-                <li><a href="{% url 'login' %}">Connexion</a></li>
-                <li><a href="{% url 'signup' %}">Inscription</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-
-    <!-- Section pour le contenu spécifique des pages -->
-    <main>
-        {% block content %}
-        <!-- Le contenu des autres pages sera inséré ici -->
-        {% endblock %}
+    <main role="main">
+        {% block content %}{% endblock %}
     </main>
 
-    <!-- Pied de page -->
     <footer>
-        <p>&copy; 2024 Chronicles des Ténèbres</p>
+        <p>&copy; {% now "Y" %} Chronicles des Ténèbres</p>
     </footer>
-
 </body>
 </html>

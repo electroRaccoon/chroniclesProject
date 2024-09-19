@@ -7,4 +7,5 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),  # Page d'inscription
     path('creer/', CreerPersonnageView.as_view(), name='creer_personnage'),
     path('personnage/<int:pk>/', views.detail_personnage, name='detail_personnage'),
+    path('mes-personnages/', views.liste_personnages, name='liste_personnages'),
 ]

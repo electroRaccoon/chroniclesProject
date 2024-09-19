@@ -3,7 +3,14 @@ from .models import PersonnageHumain, PersonnageChangelin
 
 class PersonnageBaseForm(forms.ModelForm):
     class Meta:
-        fields = ['nom', 'chronique', 'intelligence', 'astuce', 'resolution', 'force', 'dexterite', 'vigueur', 'presence', 'manipulation', 'calme', 'informatique', 'artisanat', 'combat', 'conduite', 'erudition', 'investigation', 'medecine', 'occulte', 'politique', 'science', 'armes_a_feu', 'armes_blanches', 'athletisme', 'discretion', 'larcin', 'pilotage', 'survie', 'animaux', 'empathie', 'expression', 'intimidation', 'persuasion', 'relationnel', 'sagesse_de_la_rue', 'subterfuge']
+        fields = ['nom', 'chronique', 
+                  'intelligence', 'force', 'presence',  # 3 attributs
+                  'informatique', 'combat', 'empathie']  # 3 compétences
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].required = False  # Rend tous les champs non obligatoires par défaut
 
 class PersonnageHumainForm(PersonnageBaseForm):
     class Meta(PersonnageBaseForm.Meta):
