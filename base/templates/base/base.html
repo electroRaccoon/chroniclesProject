@@ -19,6 +19,9 @@
                 <!-- Affichage si l'utilisateur est connecté -->
                 <li>Bonjour, {{ user.username }}</li>
                 
+                <!-- Les liens principaux -->
+                <li><a href="{% url 'creer_personnage' %}">Créer un personnage</a></li>
+                
                 <!-- Formulaire POST pour la déconnexion -->
                 <li>
                     <form method="POST" action="{% url 'logout' %}">

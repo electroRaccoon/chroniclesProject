@@ -20,6 +20,6 @@ from base import views  # Import the view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('base.urls')),  # Include your base app's URLs (including the welcome page)
     path('accounts/', include('django.contrib.auth.urls')),  # Add this line for authentication URLs
+    path('', include('base.urls')),  # Include your base app's URLs (including the welcome page)
 ]

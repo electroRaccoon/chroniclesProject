@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block title %}Détails du personnage{% endblock %}
+{% block content %}
+<h1>Détails du personnage</h1>
+
+<h2>{{ personnage.nom }}</h2>
+<p>Chronique: {{ personnage.chronique }}</p>
+
+<h3>Attributs</h3>
+<ul>
+    <li>Intelligence: {{ personnage.intelligence }}</li>
+    <li>Astuce: {{ personnage.astuce }}</li>
+    <li>Résolution: {{ personnage.resolution }}</li>
+    <li>Force: {{ personnage.force }}</li>
+    <li>Dextérité: {{ personnage.dexterite }}</li>
+    <li>Vigueur: {{ personnage.vigueur }}</li>
+    <li>Présence: {{ personnage.presence }}</li>
+    <li>Manipulation: {{ personnage.manipulation }}</li>
+    <li>Calme: {{ personnage.calme }}</li>
+</ul>
+
+<h3>Compétences</h3>
+<ul>
+    <li>Informatique: {{ personnage.informatique }}</li>
+    <li>Artisanat: {{ personnage.artisanat }}</li>
+    <li>Combat: {{ personnage.combat }}</li>
+    <!-- Ajoutez les autres compétences ici -->
+</ul>
+
+{% if personnage.vice %}
+    <h3>Caractéristiques Humaines</h3>
+    <p>Vice: {{ personnage.vice }}</p>
+    <p>Vertu: {{ personnage.vertu }}</p>
+{% elif personnage.aiguille %}
+    <h3>Caractéristiques Changelin</h3>
+    <p>Aiguille: {{ personnage.aiguille }}</p>
+    <p>Fil: {{ personnage.fil }}</p>
+{% endif %}
+
+<a href="{% url 'creer_personnage' %}">Créer un autre personnage</a>
+
+{% endblock %}

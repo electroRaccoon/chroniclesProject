@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block title %}Création de personnage{% endblock %}
+{% block content %}
+<h1>Créer un personnage</h1>
+<form method="post">
+    {% csrf_token %}
+    {% if form.type_personnage %}
+        <h2>Choisissez le type de personnage :</h2>
+        {{ form.type_personnage }}
+        <button type="submit">Suivant</button>
+    {% else %}
+        <h2>Créer un personnage {{ type|title }}</h2>
+        <input type="hidden" name="type_personnage" value="{{ type }}">
+        {{ form.as_p }}
+        <button type="submit">Créer le personnage</button>
+    {% endif %}
+</form>
+{% endblock %}

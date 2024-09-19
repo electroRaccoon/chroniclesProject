@@ -55,7 +55,7 @@ ROOT_URLCONF = 'chronicles_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'base/templates')],   # Your templates directory
+        'DIRS': [os.path.join(BASE_DIR, 'base', 'templates')],   # Your templates directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
