@@ -8,38 +8,34 @@
     <link rel="stylesheet" href="{% static 'base/styles.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="nav-left">
-                <li><a href="{% url 'welcome' %}">Accueil</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'creer_personnage' %}">Créer un personnage</a></li>
-                    <li><a href="{% url 'liste_personnages' %}">Mes personnages</a></li>
-                {% endif %}
-            </ul>
-            <ul class="nav-right">
-                {% if user.is_authenticated %}
-                    <li>Bonjour, {{ user.username }}</li>
-                    <li>
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit">Se déconnecter</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Connexion</a></li>
-                    <li><a href="{% url 'signup' %}">Inscription</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <ul class="nav-left">
+            <li><a href="{% url 'welcome' %}">Accueil</a></li>
+            <li><a href="{% url 'creer_personnage' %}">Créer un personnage</a></li>
+            <li><a href="{% url 'liste_personnages' %}">Mes personnages</a></li>
+        </ul>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <div class="user-info">
+                    <span class="username">Bonjour, {{ user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-btn">Se déconnecter</button>
+                    </form>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-btn">Connexion</a>
+                <a href="{% url 'signup' %}" class="signup-btn">Inscription</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
 
-    <main role="main">
-        {% block content %}{% endblock %}
-    </main>
+<main role="main">
+    {% block content %}{% endblock %}
+</main>
 
-    <footer>
-        <p>&copy; {% now "Y" %} Chronicles des Ténèbres</p>
-    </footer>
-</body>
-</html>
+<footer>
+    <p>&copy; {% now "Y" %} Chronicles des Ténèbres</p>
+</footer>

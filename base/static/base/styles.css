@@ -1,4 +1,4 @@
-/* Styles généraux */
+/* ====== STYLES GÉNÉRAUX ====== */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -7,81 +7,118 @@ body {
     padding: 0;
 }
 
-/* Barre de navigation en haut */
+/* ====== HEADER ET NAVIGATION ====== */
 nav {
     display: flex;
-    justify-content: space-between;  /* Sépare les éléments à gauche et à droite */
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #4CAF50;
-    position: sticky;  /* Garde la navigation toujours en haut */
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-ul {
-    list-style-type: none;  /* Supprime les puces des listes */
+/* Styles pour les listes de navigation */
+nav ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;  /* Affiche les éléments horizontalement */
+    display: flex;
 }
 
-li {
-    margin-right: 20px;  /* Espacement entre les éléments */
+nav li {
+    margin-right: 20px;
 }
 
-li a {
+nav li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
-/* Aligne les éléments à gauche */
+/* Navigation à gauche */
 .nav-left {
     display: flex;
+    flex-grow: 1;
 }
 
-/* Aligne les éléments à droite */
+/* Navigation à droite */
 .nav-right {
     display: flex;
-    margin-left: auto;  /* Pousse ces éléments à droite */
+    align-items: center;
 }
 
-.nav-right li {
-    margin-left: 20px;  /* Ajoute de l'espace entre les éléments à droite */
+/* Zone d'information utilisateur */
+.user-info {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
 }
 
-/* Message de bienvenue dans le body */
-main {
-    margin: 40px 20px;
-    text-align: center;  /* Centre le message de bienvenue */
+.username {
+    color: white;
+    margin-right: 15px;
 }
 
-footer {
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f1f1f1;
-    color: #555;
+.logout-form {
+    display: inline-flex;
+    align-items: center;
 }
 
-/* Centre le contenu principal */
+.logout-btn, .login-btn, .signup-btn {
+    background-color: white;
+    color: #4CAF50;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.logout-btn:hover, .login-btn:hover, .signup-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-left, .nav-right, .user-info {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .logout-btn, .login-btn, .signup-btn {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+/* ====== CONTENU PRINCIPAL ====== */
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 100px); /* Ajustez selon la hauteur de votre header/footer */
+    min-height: calc(100vh - 100px);
+    margin: 40px 20px;
+    text-align: center;
 }
 
-/* Style pour les formulaires */
+/* ====== FORMULAIRES ====== */
 form {
     width: 100%;
-    max-width: 500px; /* Ajustez selon vos besoins */
+    max-width: 500px;
     margin: 0 auto;
 }
 
-/* Centre les éléments du formulaire */
 form p {
     display: flex;
     flex-direction: column;
@@ -89,13 +126,11 @@ form p {
     margin-bottom: 15px;
 }
 
-/* Style pour les labels */
 form label {
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Style pour les inputs */
 form input[type="text"],
 form input[type="number"],
 form select {
@@ -106,7 +141,6 @@ form select {
     border-radius: 4px;
 }
 
-/* Style pour les boutons */
 form button {
     background-color: #4CAF50;
     color: white;
@@ -122,7 +156,7 @@ form button:hover {
     background-color: #45a049;
 }
 
-/* Style pour les messages d'erreur */
+/* Messages d'erreur dans les formulaires */
 .errorlist {
     color: red;
     list-style-type: none;
@@ -130,7 +164,8 @@ form button:hover {
     margin: 5px 0;
 }
 
-/* Style pour la page de détails du personnage */
+/* ====== PAGES SPÉCIFIQUES ====== */
+/* Page de détails du personnage */
 .personnage-details {
     text-align: center;
 }
@@ -149,6 +184,7 @@ form button:hover {
     margin-bottom: 10px;
 }
 
+/* Liste des personnages */
 .liste-personnages {
     max-width: 600px;
     margin: 0 auto;
@@ -179,6 +215,7 @@ form button:hover {
     color: #4CAF50;
 }
 
+/* ====== COMPOSANTS RÉUTILISABLES ====== */
 .button {
     display: inline-block;
     background-color: #4CAF50;
@@ -193,4 +230,13 @@ form button:hover {
 
 .button:hover {
     background-color: #45a049;
+}
+
+/* ====== FOOTER ====== */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #555;
 }
